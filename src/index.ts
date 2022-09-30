@@ -4,6 +4,7 @@ import { load } from "cheerio";
 
 const PORT = process.env.PORT ?? 3000;
 const BASE_URL = "https://id-mpl.com";
+const request = got.extend({ prefixUrl: BASE_URL });
 const server = express();
 
 interface IMatchResult {
@@ -13,8 +14,8 @@ interface IMatchResult {
     icon: { teamOne: string; teamTwo: string };
 }
 
-const getJadwal = async (): Promise<IMatchResult[]> => {
-    const response = await got({ url: BASE_URL });
+const getCurrentWeekSchedule = async (): Promise<IMatchResult[]> => {
+    const response = await request({ });
     const $ = load(response.body);
     const results: IMatchResult[] = $(".match-box").map((_index, element) => {
         const teamOneElement = $(element).find("div.match-team1");
@@ -45,10 +46,10 @@ const getJadwal = async (): Promise<IMatchResult[]> => {
     }).toArray();
     return results;
 };
-server.get("/", (_req, res) => res.redirect("/api/jadwal"));
+server.get("/", (_req, res) => res.json({ statusCode: 200, message: "GET /api/schedule/current-week Get MPL ID Schedule for this week" }));
 
-server.get("/api/jadwal", async (_req, res) => {
-    const results = await getJadwal();
+server.get("/api/schedule/current-week", async (_req, res) => {
+    const results = await getCurrentWeekSchedule();
     res.status(200).json({ statusCode: 200, results });
 });
 
