@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<head>
+    <title>MPL ID Jadwal - Routes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+        main {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 400;
+        }
+
+        .container {
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            justify-items: center;
+            align-items: center;
+        }
+
+        .docs {
+            display: flex;
+            flex-direction: column;
+            padding: 1.5rem;
+            table-layout: fixed;
+        }
+
+        tr.header {
+            font-weight: 600;
+        }
+
+        tr {
+            padding: 0.5rem;
+        }
+
+        td { 
+            padding: 0.5rem;
+        }
+
+        .method {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: greenyellow;
+        }
+
+        .route {
+            text-decoration: none;
+        }
+        .description {
+            overflow-wrap: break-word;
+        }
+    </style>
+</head>
+
+<main>
+    <div class="container">
+        <table class="docs">
+            <tbody>
+                <tr class="item">
+                    <td class="method">GET</td>
+                    <td>
+                        <a class="route" href="/">/</a>
+                    </td>
+                    <td class="description">You are currently here!</td>
+                </tr>
+
+                <tr class="item">
+                    <td class="method">GET</td>
+                    <td>
+                        <a class="route" href="/api/schedule/current-week">/api/schedule/current-week</a>
+                    </td>
+                    <td class="description">Get schedule for current week</td>
+                </tr>
+                <tr class="item">
+                    <td class="method">GET</td>
+                    <td>
+                        <a class="route" href="/api/schedule/1">/api/schedule/:week</a>
+                    </td>
+                    <td class="description">Get schedule based on week, MPL ID Regular Season only have 8 weeks</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+
+</html>
