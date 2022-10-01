@@ -87,7 +87,6 @@ const getWeekSchedule = async (week: number): Promise<IWeekResult[]> => {
 };
 
 const getCurrentWeekSchedule = async (): Promise<IMatchResult[]> => {
-    await getWeekSchedule(8);
     const response = await request({ });
     const $ = load(response.body);
     const results: IMatchResult[] = $(".match-box").map((_index, element) => {
