@@ -22,6 +22,7 @@ export interface ITeamResult {
     about: string;
     achievements: string[];
     roster: ITeamRoster[];
+    matches: ITeamMatch[];
 }
 
 export interface ITeamRoster {
@@ -30,4 +31,15 @@ export interface ITeamRoster {
     role: string;
     link: string;
     image: string;
+}
+
+export interface ITeamMatch {
+    week: string;
+    status: string;
+    date: string;
+    score: string;
+    teams: {
+        name: string;
+        icon: string;
+    }[];
 }

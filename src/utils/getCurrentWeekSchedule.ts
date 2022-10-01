@@ -29,8 +29,8 @@ export const getCurrentWeekSchedule = async (): Promise<IMatchResult[]> => {
             date: dateAndTime,
             score: score.length > 0 ? score.join(" ") : undefined,
             icon: {
-                teamOne: encodeURI(String(teamOneElement.find("div > img").attr("src"))),
-                teamTwo: encodeURI(String(teamTwoElement.find("div > img").attr("src")))
+                teamOne: String(teamOneElement.find("div > img").attr("src")).replace(/\s/g, "%20"),
+                teamTwo: String(teamTwoElement.find("div > img").attr("src")).replace(/\s/g, "%20")
             }
         };
         return match;
