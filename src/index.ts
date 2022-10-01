@@ -7,6 +7,7 @@ const PORT = process.env.PORT ?? 3000;
 const BASE_URL = "https://id-mpl.com/";
 const request = got.extend({ prefixUrl: BASE_URL });
 const server = express();
+server.response.app.set("json spaces", 2);
 
 interface IWeekResult {
     date: string;
