@@ -4,6 +4,7 @@ import { resolve } from "path";
 import { getCurrentWeekSchedule } from "./utils/getCurrentWeekSchedule";
 import { getWeekSchedule } from "./utils/getWeekSchedule";
 import { getTeams } from "./utils/getTeams";
+import { getTeam } from "./utils/getTeam";
 
 const server = express();
 server.response.app.set("json spaces", 2);
@@ -20,6 +21,15 @@ server.get("/api/schedule/:week", async (req, res) => {
     if (!week || (week > 8 || week < 1)) week = 1;
     const schedule = await getWeekSchedule(week);
     return res.json({ statusCode: 200, week, schedule });
+});
+
+const TEAM_ROUTES = ["ae", "aura", "btr", "evos", "geek", "onic", "rbl", "rrq"];
+server.get("/api/team/:name", async (req, res) => {
+    const teamName = req.params.name;
+    if (!teamName) return res.redirect("/");
+    if (!TEAM_ROUTES.includes(teamName)) return res.redirect("/");
+    const team = await getTeam(teamName);
+    return res.json({ statusCode: 200, team });
 });
 
 server.get("/api/teams", async (_req, res) => {

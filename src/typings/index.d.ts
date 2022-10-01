@@ -15,3 +15,19 @@ export interface ITeamsResult {
     icon?: string;
     link?: string;
 }
+
+export interface ITeamResult {
+    name: string;
+    icon: string;
+    about: string;
+    achievements: string[];
+    roster: ITeamRoster[];
+}
+
+export interface ITeamRoster {
+    season: string;
+    name: string;
+    role: string;
+    link: string;
+    image: string;
+}
