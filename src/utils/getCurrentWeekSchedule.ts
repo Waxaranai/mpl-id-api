@@ -1,12 +1,10 @@
 import got from "got";
 import { load } from "cheerio";
 import moment from "moment-timezone";
-import { BASE_URL } from "../config";
+import { BASE_URL, DATE_FORMAT } from "../config";
 import { IMatchResult } from "../typings";
 
 const request = got.extend({ prefixUrl: BASE_URL });
-const monthShort = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des"];
-const DATE_FORMAT = "DD MM YYYY mm:ss";
 
 export const getCurrentWeekSchedule = async (): Promise<IMatchResult[]> => {
     const response = await request({ });
@@ -19,9 +17,11 @@ export const getCurrentWeekSchedule = async (): Promise<IMatchResult[]> => {
         const dateAndTime = $(element).find(".championship").map((_, champElement) => {
             let str = $(champElement).text().replace(/\n/g, "")
                 .trim();
-            const shortMonth = monthShort.findIndex(v => str.includes(v));
-            if (shortMonth > -1) {
-                str = str.replace(monthShort[shortMonth], (shortMonth + 1).toString());
+            const localeData = moment.localeData("id");
+            const monthShort = localeData.monthsShort();
+            const repMonth = monthShort.findIndex(v => str.includes(v));
+            if (repMonth > 1) {
+                str = str.replace(monthShort[repMonth], (repMonth + 1).toString());
             }
             return str;
         })
