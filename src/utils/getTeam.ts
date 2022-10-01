@@ -10,7 +10,7 @@ export const getTeam = async (team: string): Promise<ITeamResult> => {
     const text = await request(`team/${team}`).text();
     const $ = load(text);
     const teamName = $("div.team-name > h2").text().trim();
-    const teamIcon = encodeURI(String($("div.team-logo > img").attr("src")));
+    const teamIcon = $("div.team-logo > img").attr("src")!;
     const aboutTeam = $("#about-team > div.main-lates-matches").text().trim();
     const teamAchievements = $("#achievements-team > div.main-lates-matches > ul > li").map((_i, $achievement) => {
         const achivement = $($achievement).text().trim();
@@ -29,11 +29,35 @@ export const getTeam = async (team: string): Promise<ITeamResult> => {
             .trim();
         return { name, role, image, link, season: rosterSeason };
     }).toArray();
+
+    const matches = $(".match-team").map((_i, $match) => {
+        const week = $($match).find(".match-detail > .row > div > div").eq(0)
+            .text()
+            .trim();
+        const dateAndTime = $($match).find(".match-detail > .row > div > div").eq(1)
+            .text()
+            .trim();
+        const status = $($match).find(".match-status-wl")
+            .text()
+            .trim();
+        const score = $($match).find(".match-score-team > .score")
+            .text()
+            .trim();
+        const teams = $($match).find(".match-logo").map((_tidx, $team) => {
+            const name = $($team).text().trim();
+            const icon = decodeURI($($team).find("img").attr("src")!);
+            return { name, icon: icon.replace(/\s/g, "%20") };
+        })
+            .toArray();
+        return { week, date: dateAndTime, status, score, teams };
+    }).toArray();
+    console.log(matches);
     return {
         name: teamName,
-        icon: teamIcon,
+        icon: teamIcon.replace(/\s/g, "%20"),
         about: aboutTeam,
         achievements: teamAchievements,
-        roster
+        roster,
+        matches
     };
 };

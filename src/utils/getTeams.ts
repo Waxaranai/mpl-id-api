@@ -10,7 +10,7 @@ export const getTeams = async (): Promise<ITeamsResult[]> => {
     const $ = load(text);
     const teams: ITeamsResult[] = $(".players > .row > div").map((_i, team) => {
         const name = $(team).find("span.name").text();
-        const icon = encodeURI(String($(team).find("span.logo > img").attr("src")));
+        const icon = String($(team).find("span.logo > img").attr("src")).replace(/\s/g, "%20");
         const link = $(team).find("a.item").attr("href");
         return { name, icon, link };
     }).toArray();
