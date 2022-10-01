@@ -71,8 +71,8 @@ const getWeekSchedule = async (week: number): Promise<IWeekResult[]> => {
                 date: dateAndTime,
                 score: score.length > 0 ? score.join(" ") : undefined,
                 icon: {
-                    teamOne: String(teamOneElement.find("div > img").attr("src")),
-                    teamTwo: String(teamTwoElement.find("div > img").attr("src"))
+                    teamOne: encodeURI(String(teamOneElement.find("div > img").attr("src"))),
+                    teamTwo: encodeURI(String(teamTwoElement.find("div > img").attr("src")))
                 }
             };
             return match;
@@ -111,8 +111,8 @@ const getCurrentWeekSchedule = async (): Promise<IMatchResult[]> => {
             date: dateAndTime,
             score: score.length > 0 ? score.join(" ") : undefined,
             icon: {
-                teamOne: String(teamOneElement.find("div > img").attr("src")),
-                teamTwo: String(teamTwoElement.find("div > img").attr("src"))
+                teamOne: encodeURI(String(teamOneElement.find("div > img").attr("src"))),
+                teamTwo: encodeURI(String(teamTwoElement.find("div > img").attr("src")))
             }
         };
         return match;
