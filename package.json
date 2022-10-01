@@ -1,17 +1,17 @@
 {
-  "name": "jadwal-mpl",
+  "name": "mpl-id-api",
   "version": "0.0.1",
-  "description": "API for MPL Indonesia Season 10 Schedule",
+  "description": "API for MPL Indonesia Season 10",
   "keywords": [
     "js",
     "typescript"
   ],
   "bugs": {
-    "url": "https://github.com/Waxaranai/jadwal-mpl/issues"
+    "url": "https://github.com/Waxaranai/mpl-id-api/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Waxaranai/jadwal-mpl.git"
+    "url": "git+https://github.com/Waxaranai/mpl-id-api.git"
   },
   "license": "AGPL-3.0",
   "author": "Waxaranai <waxaranai@gmail.com>",
