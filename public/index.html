@@ -48,6 +48,11 @@
         .description {
             overflow-wrap: break-word;
         }
+
+        code {
+            font-size: 1rem;
+            color: burlywood;
+        }
     </style>
 </head>
 
@@ -76,6 +81,20 @@
                         <a class="route" href="/api/schedule/1">/api/schedule/:week</a>
                     </td>
                     <td class="description">Get schedule based on week, MPL ID Regular Season only have 8 weeks</td>
+                </tr>
+                <tr class="item">
+                    <td class="method">GET</td>
+                    <td>
+                        <a class="route" href="/api/teams">/api/teams</a>
+                    </td>
+                    <td class="description">Get list of MPL ID Teams</td>
+                </tr>
+                <tr class="item">
+                    <td class="method">GET</td>
+                    <td>
+                        <a class="route" href="/api/team/ae">/api/team/:name</a>
+                    </td>
+                    <td class="description">Get MPL ID Team details, Accepted :name are <code>ae, aura, btr, evos, geek, onic, rbl, rrq</code></td>
                 </tr>
             </tbody>
         </table>
