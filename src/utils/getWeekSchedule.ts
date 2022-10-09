@@ -45,7 +45,7 @@ export const getWeekSchedule = async (week: number): Promise<IWeekResult[]> => {
                 .toArray()
                 .join(" ");
 
-            const score = $(element).find(".font-condensed").map((_, scoreElement) => $(scoreElement).text()
+            const score = $(element).find(".font-title").map((_, scoreElement) => $(scoreElement).text()
                 .replace(/\n/g, "")
                 .trim())
                 .toArray();
