@@ -56,49 +56,51 @@
     </style>
 </head>
 
-<main>
-    <div class="container">
-        <table class="docs">
-            <tbody>
-                <tr class="item">
-                    <td class="method">GET</td>
-                    <td>
-                        <a class="route" href="/">/</a>
-                    </td>
-                    <td class="description">You are currently here!</td>
-                </tr>
+<body>
+    <main>
+        <div class="container">
+            <table class="docs">
+                <tbody>
+                    <tr class="item">
+                        <td class="method">GET</td>
+                        <td>
+                            <a class="route" href="/">/</a>
+                        </td>
+                        <td class="description">You are currently here!</td>
+                    </tr>
 
-                <tr class="item">
-                    <td class="method">GET</td>
-                    <td>
-                        <a class="route" href="/api/schedule/current-week">/api/schedule/current-week</a>
-                    </td>
-                    <td class="description">Get schedule for current week</td>
-                </tr>
-                <tr class="item">
-                    <td class="method">GET</td>
-                    <td>
-                        <a class="route" href="/api/schedule/1">/api/schedule/:week</a>
-                    </td>
-                    <td class="description">Get schedule based on week, MPL ID Regular Season only have 8 weeks</td>
-                </tr>
-                <tr class="item">
-                    <td class="method">GET</td>
-                    <td>
-                        <a class="route" href="/api/teams">/api/teams</a>
-                    </td>
-                    <td class="description">Get list of MPL ID Teams</td>
-                </tr>
-                <tr class="item">
-                    <td class="method">GET</td>
-                    <td>
-                        <a class="route" href="/api/team/ae">/api/team/:name</a>
-                    </td>
-                    <td class="description">Get MPL ID Team details, Accepted :name are <code>ae, aura, btr, evos, geek, onic, rbl, rrq</code></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</main>
+                    <tr class="item">
+                        <td class="method">GET</td>
+                        <td>
+                            <a class="route" href="/api/schedule/current-week">/api/schedule/current-week</a>
+                        </td>
+                        <td class="description">Get schedule for current week</td>
+                    </tr>
+                    <tr class="item">
+                        <td class="method">GET</td>
+                        <td>
+                            <a class="route" href="/api/schedule/1">/api/schedule/:week</a>
+                        </td>
+                        <td class="description">Get schedule based on week, MPL ID Regular Season only have 8 weeks</td>
+                    </tr>
+                    <tr class="item">
+                        <td class="method">GET</td>
+                        <td>
+                            <a class="route" href="/api/teams">/api/teams</a>
+                        </td>
+                        <td class="description">Get list of MPL ID Teams</td>
+                    </tr>
+                    <tr class="item">
+                        <td class="method">GET</td>
+                        <td>
+                            <a class="route" href="/api/team/ae">/api/team/:name</a>
+                        </td>
+                        <td class="description">Get MPL ID Team details, Accepted :name are <code>ae, aura, btr, evos, geek, onic, rbl, rrq</code></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+</body>
 
 </html>
