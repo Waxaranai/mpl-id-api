@@ -1,8 +1,9 @@
 
 import got from "got";
 import { load } from "cheerio";
-import { BASE_URL } from "../config";
+import { BASE_URL, DATE_FORMAT } from "../config";
 import { ITeamResult } from "../typings";
+import moment from "moment-timezone";
 
 const request = got.extend({ prefixUrl: BASE_URL });
 
@@ -34,9 +35,16 @@ export const getTeam = async (team: string): Promise<ITeamResult> => {
         const week = $($match).find(".match-detail > .row > div > div").eq(0)
             .text()
             .trim();
-        const dateAndTime = $($match).find(".match-detail > .row > div > div").eq(1)
+        let dateAndTime = $($match).find(".match-detail > .row > div > div").eq(1)
             .text()
-            .trim();
+            .trim()
+            .replace("-", new Date().getFullYear().toString());
+
+        const shortMonth = moment.localeData("en-us").monthsShort();
+        const regMonth = shortMonth.findIndex(month => dateAndTime.includes(month));
+        if (regMonth > 1) {
+            dateAndTime = dateAndTime.replace(shortMonth[regMonth], (regMonth + 1).toString());
+        }
         const status = $($match).find(".match-status-wl")
             .text()
             .trim();
@@ -49,9 +57,9 @@ export const getTeam = async (team: string): Promise<ITeamResult> => {
             return { name, icon: icon.replace(/\s/g, "%20") };
         })
             .toArray();
-        return { week, date: dateAndTime, status, score, teams };
+        return { week, date: moment(dateAndTime, DATE_FORMAT).format("DD-MM-YYYY mm:ss"), status, score, teams };
     }).toArray();
-    console.log(matches);
+
     return {
         name: teamName,
         icon: teamIcon.replace(/\s/g, "%20"),
