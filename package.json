@@ -23,7 +23,7 @@
     "compile": "tsc --build tsconfig.json",
     "lint": "eslint . --ignore-path .gitignore --ext .ts",
     "lint:fix": "npm run lint -- --fix",
-    "start": "npm run clean && npm run build && node --experimental-specifier-resolution=node dist",
+    "start": "npm run build && node --experimental-specifier-resolution=node dist",
     "start:dev": "npm run clean && npm run compile && node --experimental-specifier-resolution=node --no-warnings dist"
   },
   "eslintConfig": {
